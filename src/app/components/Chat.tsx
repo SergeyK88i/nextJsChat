@@ -123,7 +123,7 @@ export function Chat() {
                       style={{ cursor: message.content.includes('```') ? 'pointer' : 'default' }}
                     >
                       {message.content.includes('```') 
-                        ? 'Код отображен в боковой панели'
+                        ? 'Показать пример кода'
                         : message.content}
                     </div>
                   </div>
