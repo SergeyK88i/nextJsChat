@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import styles from '../styles/Chat.module.css'
 import { type AIModel } from '../types/ai'
 import { Header } from './Header'
@@ -14,6 +14,7 @@ interface Message {
 }
 
 export function Chat() {
+  const messageEndRef = useRef<HTMLDivElement>(null)
   const [selectedModel, setSelectedModel] = useState<AIModel>('gpt3')
   const [selectedTopics, setSelectedTopics] = useState<string[]>([])
   const [sidePanelContent, setSidePanelContent] = useState<string>('')
@@ -67,6 +68,15 @@ export function Chat() {
     setIsSidePanelOpen(false)
   }
 
+  const scrollToBottom = () => {
+    setTimeout(() => {
+      messageEndRef.current?.scrollIntoView({ behavior: "smooth" })
+    }, 100)
+  }
+
+  useEffect(() => {
+    scrollToBottom()
+  }, [messages])
   return (
     <div className={styles.container}>
       <Header 
@@ -99,6 +109,7 @@ export function Chat() {
                   </div>
                 )
               ))}
+              <div ref={messageEndRef} />
             </div>
             <form
               onSubmit={handleSubmit}
