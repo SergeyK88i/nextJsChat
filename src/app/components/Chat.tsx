@@ -101,6 +101,13 @@ export function Chat() {
                       className={`${styles.messageContent} ${
                         message.role === 'user' ? styles.userMessageContent : styles.assistantMessageContent
                       }`}
+                      onClick={() => {
+                        if (message.content.includes('```')) {
+                          setSidePanelContent(message.content)
+                          setIsSidePanelOpen(true)
+                        }
+                      }}
+                      style={{ cursor: message.content.includes('```') ? 'pointer' : 'default' }}
                     >
                       {message.content.includes('```') 
                         ? 'Код отображен в боковой панели'
