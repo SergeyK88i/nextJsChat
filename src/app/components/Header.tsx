@@ -8,9 +8,10 @@ interface HeaderProps {
   setSelectedModel: (model: AIModel) => void
   selectedTopics: string[]
   setSelectedTopics: (topics: string[]) => void
+  onClearHistory: () => void
 }
 
-export function Header({ selectedModel, setSelectedModel, selectedTopics, setSelectedTopics }: HeaderProps) {
+export function Header({ selectedModel, setSelectedModel, selectedTopics, setSelectedTopics, onClearHistory }: HeaderProps) {
   return (
     <header className={styles.header}>
       <div className={styles.headerContent}>
@@ -26,6 +27,9 @@ export function Header({ selectedModel, setSelectedModel, selectedTopics, setSel
             <option value="gpt4">GPT-4 Turbo</option>
             <option value="gpt3">GPT-3.5 Turbo</option>
           </select>
+          <button onClick={onClearHistory} className={styles.clearButton}>
+            Clear History
+          </button>
           <TopicSelector 
             selectedTopics={selectedTopics}
             onTopicChange={setSelectedTopics}

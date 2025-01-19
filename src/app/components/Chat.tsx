@@ -5,7 +5,7 @@ import styles from '../styles/Chat.module.css'
 import { type AIModel } from '../types/ai'
 import { Header } from './Header'
 import { SidePanel } from './Sidepanel'
-import { sendChatRequest } from '../utils/api'
+import { clearChatHistory, sendChatRequest } from '../utils/api'
 
 interface Message {
   id: string
@@ -77,6 +77,18 @@ export function Chat() {
   useEffect(() => {
     scrollToBottom()
   }, [messages])
+
+  const handleClearHistory = async () => {
+    try {
+      await clearChatHistory()
+      setMessages([])
+      setSidePanelContent('')
+      setIsSidePanelOpen(false)
+    } catch (error) {
+      console.error('Error clearing history:', error)
+    }
+  }
+
   return (
     <div className={styles.container}>
       <Header 
@@ -84,6 +96,7 @@ export function Chat() {
         setSelectedModel={setSelectedModel}
         selectedTopics={selectedTopics}
         setSelectedTopics={setSelectedTopics}
+        onClearHistory={handleClearHistory}
       />
       <main className={styles.main}>
         <div className={`${styles.card} ${isSidePanelOpen ? styles.cardWithSidePanel : ''}`}>

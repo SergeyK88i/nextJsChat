@@ -33,4 +33,19 @@
     font-size: 1rem;
   }
   
+  .clearButton {
+    padding: 0.5rem 1rem;
+    margin-left: 1rem;
+    background-color: #ef4444;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .clearButton:hover {
+    background-color: #dc2626;
+  }
+  
   

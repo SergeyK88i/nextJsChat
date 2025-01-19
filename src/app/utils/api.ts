@@ -11,7 +11,7 @@ export async function sendChatRequest(messages: Message[], model: string, select
   if (!lastMessage || !lastMessage.content) {
     throw new Error('No message content provided')
   }
-  
+
   console.log('Request payload:', {
     text: lastMessage.content,
     history: messages.slice(0, -1).map(msg => ({
@@ -59,4 +59,25 @@ export async function sendChatRequest(messages: Message[], model: string, select
 
   
 }
+
+export async function clearChatHistory() {
+  try {
+    const response = await fetch(`${API_URL}/clear`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    })
+    
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`)
+    }
+    
+    return response.json()
+  } catch (error) {
+    console.error('Error clearing history:', error)
+    throw error
+  }
+}
+
 
