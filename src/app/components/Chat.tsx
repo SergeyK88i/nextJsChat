@@ -76,7 +76,7 @@ export function Chat() {
         setSelectedTopics={setSelectedTopics}
       />
       <main className={styles.main}>
-        <div className={styles.card}>
+        <div className={`${styles.card} ${isSidePanelOpen ? styles.cardWithSidePanel : ''}`}>
           <div className={styles.chatContainer}>
             <div className={styles.messageArea}>
               {messages.map((message) => (

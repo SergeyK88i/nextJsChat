@@ -4,8 +4,13 @@
     background-color: #fff;
     border-radius: 0.5rem;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    transition: max-width 0.3s ease;
+    flex: 1;
   }
-  
+  .cardWithSidePanel {
+    max-width: calc(50% - 1rem);
+    margin-right: 50%;
+  }
   .chatContainer {
     display: flex;
     flex-direction: column;
